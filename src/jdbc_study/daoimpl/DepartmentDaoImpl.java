@@ -10,7 +10,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
+import jdbc_study.dao.DepartmentDao;
 import jdbc_study.dto.Department;
 import jdbc_study.jdbc.MySQLjdbcUtil;
 
