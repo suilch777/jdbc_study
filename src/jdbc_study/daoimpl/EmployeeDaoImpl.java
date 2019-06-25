@@ -79,8 +79,8 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			pstmt.setInt(4, employee.getManager().getEmpNo());
 			pstmt.setInt(5, employee.getSalary());
 			pstmt.setInt(6, employee.getDno().getDeptNo());
-			pstmt.setBytes(7, employee.getPic());
 			log.trace(pstmt);
+			pstmt.setBytes(7, employee.getPic());
 			return pstmt.executeUpdate();
 		}
 	}
