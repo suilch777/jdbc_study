@@ -10,8 +10,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collection;
+import java.util.List;
+import java.util.Vector;
 
 import javax.swing.BoxLayout;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -25,6 +29,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import jdbc_study.dto.Department;
 import jdbc_study.dto.Employee;
+import javax.swing.JComboBox;
 
 @SuppressWarnings("serial")
 public class PanelEmployee extends JPanel implements ActionListener {
@@ -33,7 +38,8 @@ public class PanelEmployee extends JPanel implements ActionListener {
 	private JTextField tfTitle;
 	private JTextField tfManager;
 	private JTextField tfSalary;
-	private JTextField tfDept;
+	private JComboBox<Department> cmbDept;
+	private DefaultComboBoxModel<Department> deptCmbModel;
 	private JLabel lblImg;
 
 	private String imgPath;
@@ -44,6 +50,8 @@ public class PanelEmployee extends JPanel implements ActionListener {
 	private JFileChooser chooser;
 	private String selectedImpPath;
 	private File picsDir;
+	
+	
 
 	public PanelEmployee() {
 		imgPath = System.getProperty("user.dir") + "\\images\\";
@@ -108,29 +116,28 @@ public class PanelEmployee extends JPanel implements ActionListener {
 		pEmp.add(tfTitle);
 		tfTitle.setColumns(10);
 
-		JLabel lblManager = new JLabel("직속상사");
+		JLabel lblManager = new JLabel("부서");
 		pEmp.add(lblManager);
 		lblManager.setHorizontalAlignment(SwingConstants.RIGHT);
+				
+		cmbDept = new JComboBox<Department>();
+				pEmp.add(cmbDept);
 
-		tfManager = new JTextField();
-		pEmp.add(tfManager);
-		tfManager.setColumns(10);
-
-		JLabel lblSalary = new JLabel("급여");
+		JLabel lblSalary = new JLabel("직속상사");
 		pEmp.add(lblSalary);
 		lblSalary.setHorizontalAlignment(SwingConstants.RIGHT);
+		
+				tfManager = new JTextField();
+				pEmp.add(tfManager);
+				tfManager.setColumns(10);
 
-		tfSalary = new JTextField();
-		pEmp.add(tfSalary);
-		tfSalary.setColumns(10);
-
-		JLabel lblDept = new JLabel("부서");
+		JLabel lblDept = new JLabel("급여");
 		pEmp.add(lblDept);
 		lblDept.setHorizontalAlignment(SwingConstants.RIGHT);
-
-		tfDept = new JTextField();
-		pEmp.add(tfDept);
-		tfDept.setColumns(10);
+		
+				tfSalary = new JTextField();
+				pEmp.add(tfSalary);
+				tfSalary.setColumns(10);
 	}
 
 	private void switchImage(String filePath) {
@@ -145,7 +152,8 @@ public class PanelEmployee extends JPanel implements ActionListener {
 		tfTitle.setText(emp.getTitle());
 		tfManager.setText(emp.getManager().getEmpNo() + "");
 		tfSalary.setText(emp.getSalary() + "");
-		tfDept.setText(emp.getDno().getDeptNo() + "");
+		//cmbDept.setText(emp.getDno().getDeptNo() + "");
+		cmbDept.setSelectedItem(emp);
 		// 이미지 나중에
 //		lblImg;
 		if (emp.getPic() != null) {
@@ -167,7 +175,7 @@ public class PanelEmployee extends JPanel implements ActionListener {
 		String title = tfTitle.getText().trim();
 		int salary = Integer.parseInt(tfSalary.getText().trim());
 		Employee manager = new Employee(Integer.parseInt(tfManager.getText().trim()));
-		Department dno = new Department(Integer.parseInt(tfDept.getText().trim()));
+		Department dno = (Department)cmbDept.getSelectedItem();
 
 		return new Employee(empNo, empName, title, manager, salary, dno, getImage());
 	}
@@ -178,7 +186,7 @@ public class PanelEmployee extends JPanel implements ActionListener {
 		tfTitle.setText("");
 		tfManager.setText("");
 		tfSalary.setText("");
-		tfDept.setText("");
+		cmbDept.setSelectedIndex(-1);
 		switchImage(imgPath + "noImg.jpg");
 	}
 
@@ -192,7 +200,7 @@ public class PanelEmployee extends JPanel implements ActionListener {
 		tfTitle.setEditable(isEditable);
 		tfManager.setEditable(isEditable);
 		tfSalary.setEditable(isEditable);
-		tfDept.setEditable(isEditable);
+		cmbDept.setEditable(isEditable);
 		btnImgAdd.setVisible(false);
 	}
 
@@ -245,4 +253,17 @@ public class PanelEmployee extends JPanel implements ActionListener {
 		return file;
 	}
 
+
+
+	public JComboBox<Department> getCmbDept() {
+		return cmbDept;
+	}
+
+	public void setDeptCmbModel(List<Department> deptList) {
+		deptCmbModel = new DefaultComboBoxModel<Department>(new Vector<Department>(deptList));
+		cmbDept.setModel(deptCmbModel);
+	}
+
+	
+	
 }

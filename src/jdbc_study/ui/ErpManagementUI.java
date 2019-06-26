@@ -183,6 +183,7 @@ public class ErpManagementUI extends JFrame implements ActionListener {
 			frameEmployee = new EmployeeUI();
 			frameEmployee.setParent(ErpManagementUI.this);
 			frameEmployee.setDao(empDao);
+			frameEmployee.setDeptDao(deptDao);
 		}
 		frameEmployee.clearEmployee();
 		frameEmployee.setVisible(true);

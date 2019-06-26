@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -11,7 +12,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import jdbc_study.dao.DepartmentDao;
 import jdbc_study.dao.EmployeeDao;
+import jdbc_study.dto.Department;
 import jdbc_study.dto.Employee;
 import jdbc_study.ui.content.PanelEmployee;
 
@@ -24,6 +27,7 @@ public class EmployeeUI extends JFrame implements ActionListener {
 	private PanelEmployee pContent;
 
 	private EmployeeDao dao;
+	private DepartmentDao deptDao;
 	
 	private ErpManagementUI erpManagementUI;
 	
@@ -34,6 +38,12 @@ public class EmployeeUI extends JFrame implements ActionListener {
 	
 	public void setDao(EmployeeDao dao) {
 		this.dao = dao;
+	}
+
+	public void setDeptDao(DepartmentDao deptDao) {
+		this.deptDao = deptDao;
+		List<Department> deptList=deptDao.selectDepartmentByAll();
+		pContent.setDeptCmbModel(deptList);
 	}
 
 	private void initComponents() {
