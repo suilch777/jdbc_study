@@ -3,6 +3,7 @@ package jdbc_study;
 import java.awt.EventQueue;
 
 import jdbc_study.ui.ErpManagementUI;
+import jdbc_study.ui.ErpMngUI;
 
 public class ErpMain {
 
@@ -13,7 +14,7 @@ public class ErpMain {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ErpManagementUI frame = new ErpManagementUI();
+					ErpMngUI frame = new ErpMngUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

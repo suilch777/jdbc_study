@@ -24,13 +24,14 @@ public class MySQLjdbcUtil {
 			for(Entry<Object, Object> e : prop.entrySet()){
 				System.out.printf("%s - %s%n", e.getKey(), e.getValue());
 			}
-			//µ¥ÀÌÅÍº£ÀÌ½º¿¡ ¿¬°á
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			con = DriverManager.getConnection(prop.getProperty("url"), prop);
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
 		} catch (SQLException e1) {
-			System.err.println("ÇØ´ç µ¥ÀÌÅÍº£ÀÌ½º ¿¬°áÁ¤º¸°¡ Àß¸øµÇ¾ú½¿ È®ÀÎ¿ä¸Á");
+			System.err.println("ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß¸ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ È®ï¿½Î¿ï¿½ï¿½");
 		}
+		System.out.println(con);
 		return con;
 	}
 }

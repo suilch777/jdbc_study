@@ -124,9 +124,8 @@ public class ErpManagementUI extends JFrame implements ActionListener {
 		if (e.getSource() == btnEmpSearch) {
 			actionPerformedBtnEmpSearch(e);
 		}
-		if (e.getSource() == btnEmpAdd) {
-			actionPerformedBtnEmpAdd(e);
-		}
+		
+		
 		if (e.getSource() == btnDeptList) {
 			actionPerformedBtnList(e);
 		}
@@ -143,6 +142,17 @@ public class ErpManagementUI extends JFrame implements ActionListener {
 			actionPerformedBtnDelete(e);
 		}
 	}
+
+	
+		
+	protected void actionPerformedBtnAdd(ActionEvent e) {
+		showDepartmentUI();
+		
+	}
+
+
+
+	
 
 	protected void actionPerformedBtnDelete(ActionEvent e) {
 		String deptNo = JOptionPane.showInputDialog("삭제할 부서번호를 입력하세요");
@@ -253,9 +263,7 @@ public class ErpManagementUI extends JFrame implements ActionListener {
 		}
 	}
 
-	protected void actionPerformedBtnAdd(ActionEvent e) {
-		showDepartmentUI();
-	}
+	
 
 	protected void actionPerformedBtnList(ActionEvent e) {
 		if (frameDepartmentList == null) {
@@ -279,9 +287,7 @@ public class ErpManagementUI extends JFrame implements ActionListener {
 		
 	}
 	
-	protected void actionPerformedBtnEmpAdd(ActionEvent e) {
-		showEmployeeUI();
-	}
+	
 	
 	protected void actionPerformedBtnEmpSearch(ActionEvent e) {
 		String empNo = JOptionPane.showInputDialog("검색할 사원번호를 입력하세요");

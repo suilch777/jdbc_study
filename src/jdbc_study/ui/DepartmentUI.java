@@ -60,7 +60,7 @@ public class DepartmentUI extends JFrame implements ActionListener {
 		pBtn.add(btnClear);
 	}
 
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) {	
 		if (e.getSource() == btnClear) {
 			actionPerformedBtnClear(e);
 		}
